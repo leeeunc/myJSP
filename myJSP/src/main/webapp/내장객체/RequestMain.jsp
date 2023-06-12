@@ -15,10 +15,16 @@ http://localhost:8090/%EB%82%B4%EC%9E%A5%EA%B0%9D%EC%B2%B4/RequestWebInfo.jsp
 	<!-- method를 지정하지않은 경우는 모두 get방식으로 호출됩니다. 
 	아무런 설정도 하지 않으면 기본이 get 방식-->
 	
+	
 	<!--
 		404 : 페이지를 찾을수 없음 
 		서버에 파일이 없는경우, 또는 경로가 일치 하지 않는경우
 		URL경로를 확인해봐야 함!!!!!!!!!!		
+		
+		url로 호출 : 무조건 get방식으로 호출
+		http://			: 프로토콜 = 통신규약
+		www.naver.com	: 도메인(ip, port) = 웹서버를 찾아갑니다!
+		
 	-->
 	<p><a href="RequestWebInfo.jsp?eng=hello&han=안녕">GET방식 요청</a><p>
 	
@@ -29,7 +35,6 @@ http://localhost:8090/%EB%82%B4%EC%9E%A5%EA%B0%9D%EC%B2%B4/RequestWebInfo.jsp
 		<input type="submit" value="post전송">
 	
 	</form>
-	
 	
 	<h2>2. 클라이언트의 요청 매개변수 읽기</h2>
 	<form method="post" action="RequestParameter.jsp">
@@ -51,6 +56,8 @@ http://localhost:8090/%EB%82%B4%EC%9E%A5%EA%B0%9D%EC%B2%B4/RequestWebInfo.jsp
 	</form>
 	
 
+	<h2>3. HTTP 요청 헤더 정보 읽기</h2>
+	<a href = "RequestHeader.jsp">요청 헤더 정보 읽기</a>	
 
 
 
