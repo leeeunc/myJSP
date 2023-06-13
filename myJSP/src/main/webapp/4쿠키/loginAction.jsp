@@ -23,7 +23,7 @@
 	
 	// 아이디 저장 체크박스
 	String saveYN = request.getParameter("save_check");
-	out.print("saveYN : " + saveYN + "<br>");
+	// out.print("saveYN : " + saveYN + "<br>");
 	
 	// 아이디 저장하기 체크박스에 체크가 되어있다면
 	// 쿠키에 아이디를 저장합니다.
@@ -51,7 +51,10 @@
 		<h1>로그인 성공</h1>
 <%
 	} else{
-		out.print("로그인실패");
+		out.println("<script>alert('로그인실패');</script>");
+		//response.sendRedirect("login.jsp");
+		return;
+		
 	}
 	
 %>
