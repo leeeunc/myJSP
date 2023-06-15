@@ -18,14 +18,25 @@
 		<li>int : 
 			<%= (page_int == null)? "값 없음": page_int %>
 		</li>
-		<li>String : 
+		<li>string : 
 			<%= (page_str == null)? "값 없음": page_str %>
 		</li>
-		<li>Person : 
-			<%= (page_Person == null)? "값 없음": page_Person %>
+		<li>person : 
+			<%= (page_Person == null)? "값 없음": page_Person%>
 		</li>
-		
 	</ul>
 	
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

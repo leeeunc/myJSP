@@ -12,10 +12,12 @@
 	
 	// 세션무효화
 	session.invalidate();
+	
+	// 세션아이디 새로 발급
+	request.getSession(true);
 %>
 세션이 무효화 되었습니다.
 <a href = "SessionLocation.jsp">SessionLocation.jsp 바로가기</a>
-<a href = "SessionLocation.jsp">SessionInvalidate.jsp 바로가기</a>
 
 </body>
 </html>

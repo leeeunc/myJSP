@@ -4,23 +4,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그아웃</title>
 </head>
 <body>
-	<%
-	
+
+<%
 	// 방법1. 회원인증정보 속성삭제
 	session.removeAttribute("UserId");
 	session.removeAttribute("member");
 	
-	// 방법2. 세션 무효화
+	// 방법2. 세션무효화
 	session.invalidate();
 	
 	// 페이지 이동
 	response.sendRedirect("LoginForm.jsp");
-	
-	
-	
-	 %>
+
+%>
+
+
+
 </body>
 </html>

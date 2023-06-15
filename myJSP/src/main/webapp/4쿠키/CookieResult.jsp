@@ -1,27 +1,29 @@
+<%@page import="java.net.URLDecoder"%>
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>쿠키 값 출력하기</title>
 </head>
 <body>
 
 	<h2>쿠키값 확인하기</h2>
-	<p>처음 접속시 저장된 쿠키가 없는 경우 빈페이지가 출력될 수 있습니다. </p>
+	<p>처음 접속시 저장된 쿠키가 없는경우 빈페이지가 출력 될수 있습니다</p>
 	<%
 	Cookie[] cookies = request.getCookies();
-	if(cookies != null){		
-		for(Cookie cookie :cookies){
+	if(cookies != null){
+		for(Cookie cookie : cookies){
 			String cookieName = cookie.getName();
 			String cookieValue = cookie.getValue();
 			
-			out.print("쿠키명  :" + cookieName + "<br>");
-			out.print("쿠키값  :" + cookieValue + "<br><br>");
-			
+			out.print("쿠키명 : " + cookieName + "<br>"
+					+ "쿠키값 : " + URLDecoder.decode(cookieValue) +"<br><br>");
 		}
 	}
+	
 	
 	%>
 </body>

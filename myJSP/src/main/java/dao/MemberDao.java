@@ -5,7 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import common.ConnectionUtill;
+import common.ConnectionUtil;
+import common.ConnectionUtil;
 import dto.Member;
 
 public class MemberDao {
@@ -32,7 +33,7 @@ public class MemberDao {
 		String sql = "select * from member " + "where id =?and pass=?";
 		
 		// 리소스 자원을 자동 반환(close())
-		try(Connection con = ConnectionUtill.getConnection();
+		try(Connection con = ConnectionUtil.getConnection();
 				PreparedStatement psmt = con.prepareStatement(sql);) {
 			psmt.setString(1, id); // 첫번째 '?' 
 			psmt.setString(2, pw); // 두번째 '?'
@@ -66,7 +67,7 @@ public class MemberDao {
 		int i = 0;
 		String sql = "insert into member values(?, ?, ?, sysdate)";
 		
-		 try(Connection conn = ConnectionUtill.getConnection();
+		 try(Connection conn = ConnectionUtil.getConnection();
 				 PreparedStatement psmt = conn.prepareStatement(sql);) {
 			 
 			 psmt.setString(1, member.getId());

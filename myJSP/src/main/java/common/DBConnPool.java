@@ -10,9 +10,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class DBConnpool {
+public class DBConnPool {
 
-	public DBConnpool() {
+	public DBConnPool() {
 		// TODO Auto-generated constructor stub
 	}
 

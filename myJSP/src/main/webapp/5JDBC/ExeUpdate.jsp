@@ -12,15 +12,16 @@
 	<h2>회원 추가 테스트</h2>
 	
 	<%
-		Member member = new Member("id", "pw", "이름", "");
-		MemberDao dao = new MemberDao();
-		int res = dao.insert(member);
-		
-		if(res>0){
-			out.print(res + "건 입력 되었습니다.");
-		} else{
-			out.print("입력 되지 않았습니다.");
-		}
+	Member member = new Member("id", "pw", "이름", "");
+	MemberDao dao = new MemberDao();
+	int res = dao.insert(member);
+	
+	if(res>0){
+		out.print(res+"건 입력 되었습니다.");
+	} else {
+		out.print("입력 되지 않았습니다.");
+	}
+	
 	%>
 </body>
 </html>

@@ -1,5 +1,5 @@
--- 게시판 테이블 생성
-create table member(
+-- 회원 테이블 생성
+create table member (
     id varchar2(10) not null,
     pass varchar2(10) not null,
     name varchar2(30) not null,
@@ -7,7 +7,8 @@ create table member(
     primary key (id)
 );
 
-create table board(
+-- 게시판 테이블 생성
+create table board (
     num number primary key,
     title varchar2(200) not null,
     content varchar2(2000) not null,
@@ -16,26 +17,26 @@ create table board(
     visitcount number(6)
 );
 
--- 외래키 생성
+-- 외래키 추가
 alter table board
-    add constraint board_mem_fk foreign key(id)
-    references member(id);
+    add constraint board_mem_fk foreign key (id)
+    references member (id);
 
 -- 시퀀스 생성
-create sequence seq_board_num
+create sequence seq_board_num 
     increment by 1
     start with 1
     minvalue 1
     nomaxvalue
     nocycle
     nocache;
-
--- 더미데이터 입력
-insert into member (id, pass, name) values ('musthave', '1234', '머스트해브');
-insert into board(num, title, content, id, postdate, visitcount)
-    values (seq_board_num.nextval, '제목1입니다','내용1입니다','musthave', sysdate,0);
     
--- 커맨트 등록
+-- 더미데이터 입력
+insert into member (id, pass, name) values ('test', '1234', '머스트해브');
+insert into board  (num, title, content, id, postdate, visitcount) 
+	values (seq_board_num.nextval, '제목1입니다', '내용1입니다', 'test', sysdate, 0);
+
+-- comment 추가
 comment on table board is '게시판';
 comment on column board.num is '일련번호';
 comment on column board.title is '제목';
@@ -51,5 +52,12 @@ comment on column member.name is '이름';
 comment on column member.regidate is '생성일';
 
 
-
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
