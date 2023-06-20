@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import common.DBConnPool;
 import dto.Board;
+import dto.Criteria;
 
 /**
  * 
@@ -60,12 +61,12 @@ public class BoardDao {
 	 * 게시물의 총 갯수를 반환 합니다
 	 * @return 게시물의 총 갯수
 	 */
-	public int getTotalCnt(String searchField, String searchWord) {
+	public int getTotalCnt(Criteria criteria) {
 		int totalCnt = 0;
 		String sql = "select count(*) "
 					+ "from board ";
-		if(searchWord != null && !"".equals(searchWord)) {
-			sql += "where "+ searchField +" like '%"+ searchWord +"%'";
+		if(criteria.getSearchWord() != null && !"".equals(criteria.getSearchWord())) {
+			sql += "where "+ criteria.getSearchField() +" like '%"+ criteria.getSearchWord() +"%'";
 		}	
 		
 		sql += "order by num desc";
@@ -247,6 +248,58 @@ public class BoardDao {
 		
 		return res;
 	}
+	
+	
+	
+	public List<Board> getListPage(Criteria criteria) {
+		List<Board> boardList = new ArrayList<>();
+		
+		String sql = ""
+				+ "select * from("
+				+ " select t.*, rownum rn from("
+					+ "select * from board order by num desc)t ";
+				
+		// 검색어가 입력 되었으면 검색 조건을 추가 합니다.
+		if(criteria.getSearchWord() != null 
+				&& !"".equals(criteria.getSearchWord())){		
+			
+			sql 	+=	"where " + criteria.getSearchField() 
+							+" like '%" + criteria.getSearchWord() + "%'";
+		}
+		
+		sql		+= ") where rn between "+ criteria.getStartNo() +" and "+ criteria.getEndNo();
+
+		// 검색조건 추가
+		try (Connection conn = DBConnPool.getConnection();
+				PreparedStatement psmt = conn.prepareStatement(sql);){
+			ResultSet rs = psmt.executeQuery();
+			
+			// 게시글의 수만큼 반복
+			while(rs.next()) {
+				// 게시물의 한행을 DTO에 저장
+				Board board = new Board();
+				
+				board.setNum(rs.getString("num"));
+				board.setTitle(rs.getString("title"));
+				board.setContent(rs.getString("content").replace("\r\n", "<br>"));
+				board.setId(rs.getString("id"));
+				board.setPostdate(rs.getString("postdate"));
+				board.setVisitcount(rs.getString("visitcount"));
+				
+				boardList.add(board); // 결과 목록에 저장
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("게시물 조회 중 예외 발생");
+			e.printStackTrace();
+		}
+		return boardList;
+	}
+	
+	
+	
+	
+	
 }
 
 
