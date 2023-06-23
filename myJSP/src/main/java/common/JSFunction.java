@@ -1,7 +1,9 @@
 package common;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspWriter;
 
 public class JSFunction {
@@ -49,6 +51,21 @@ public class JSFunction {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public static void alertBack(HttpServletResponse response, String msg) {
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			String script = "<script> alert('"+ msg +"');" + "history.back(); </script>";
+			
+			PrintWriter writer = response.getWriter();
+			writer.print(script);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

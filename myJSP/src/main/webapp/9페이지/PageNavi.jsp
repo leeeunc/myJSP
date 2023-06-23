@@ -10,7 +10,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:set var="pageDto" value="<%=pageDto %>"></c:set>
+
+
+<c:set var="pageDto" value="${pageDto }"></c:set>
 <c:if test="${pageDto.prev }">
 	<a href='List.jsp?pageNo=${pageDto.startNo-1 }'>이전</a>
 </c:if>

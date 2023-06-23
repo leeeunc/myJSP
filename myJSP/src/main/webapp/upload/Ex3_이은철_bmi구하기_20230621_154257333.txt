@@ -1,0 +1,44 @@
+package 평가시험_이은철;
+
+import java.util.Scanner;
+
+public class Ex3 {
+
+	public static void main(String[] args) {
+		
+		Scanner scan = new Scanner(System.in);
+		while(true) {
+			System.out.println("=============BMI 구하기=============");
+			System.out.println("키를 입력해주세요.(m)");
+			double height = scan.nextDouble();
+			System.out.println("몸무게를 입력해주세요.(kg)");
+			double weight = scan.nextDouble();
+			
+			double bmi = weight / (height * height);
+			System.out.printf("당신의 BMI는 %.1f 입니다.", bmi);
+			
+
+				if(bmi <= 18) {
+					System.out.println("당신은 저체중 입니다.");
+				} else {
+					if(bmi <= 20) {
+						System.out.println("당신은 정상 입니다.");
+					} else {
+						if(bmi <= 22) {
+							System.out.println("당신은 과체중 입니다.");
+						} else {
+							System.out.println("당신은 비만 입니다.");
+						}
+					}
+				
+			}
+			System.out.println("q : 종료하기 / 나머지 키 : 계속하기");
+			String out = scan.next();
+			if(out.equalsIgnoreCase("q")) {
+				break;
+			}
+		}
+		
+		
+	}
+}
