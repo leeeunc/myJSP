@@ -62,7 +62,7 @@ public class PassController extends HttpServlet {
 			// 비밀번호 체크 성공
 			System.out.println("비밀번호 검증 성공!!!!");
 			if(mode.equals("edit")) {
-				// 수정
+				// 수정1
 				
 			} else if(mode.equals("delete")) {
 				// 삭제
