@@ -63,9 +63,21 @@ public class PassController extends HttpServlet {
 			System.out.println("비밀번호 검증 성공!!!!");
 			if(mode.equals("edit")) {
 				// 수정1
-				
+				response.sendRedirect("../mvcboard/edit.do?idx="+idx);
 			} else if(mode.equals("delete")) {
 				// 삭제
+				 int res = dao.delete(idx);
+				 
+				 System.out.println("res : " + res);
+				 
+				 if(res>0) {
+					 // 삭제 성공
+					 JSFunction.alertLocation(response, "삭제 되었습니다.", "../mvcboard/list.do");
+				 } else {
+					 // 게시물 삭제 실패
+					 // 메시지 처리후 이전화면으로
+					 JSFunction.alertBack(response, "게시물 삭제에 실패 하였습니다. 관리자에게 문의 해주세요.");
+				 }
 			}
 
 		} else {

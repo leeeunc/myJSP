@@ -203,7 +203,29 @@ public class MVCBoardDao {
 		}
 		
 		
-		return false;
+		return res;
+	}
+
+	public int delete(String idx) {
+		int res = 0;
+		
+		String sql = "delete from mvcboard where idx = ?";
+		System.out.println("delete sql : " + sql);
+		
+		try(Connection conn = DBConnPool.getConnection();
+				PreparedStatement psmt = conn.prepareStatement(sql);) {
+				
+				psmt.setString(1, idx);
+				
+				res = psmt.executeUpdate();
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		return res;
 	}
 	
 	

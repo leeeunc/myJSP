@@ -29,8 +29,16 @@ public class EditController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 게시물 조회
+		MVCBoardDao dao = new MVCBoardDao();
+		MVCBoardDto dto =  dao.selectOne(request.getParameter("idx"));
+
+		// request영역에 저장
+		request.setAttribute("dto", dto);
 		
-	
+		// jsp파일로 포워딩
+		request.getRequestDispatcher("../14MVCBoard/Edit.jsp").forward(request, response);
+		
 	}
 
 	

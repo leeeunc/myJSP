@@ -68,4 +68,21 @@ public class JSFunction {
 		
 	}
 
+	public static void alertLocation(HttpServletResponse response, String msg, String url) {
+
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			String script = "<script> alert('"+ msg +"');"
+						+ " location.href='"+ url +"'; </script>";
+			
+			PrintWriter writer = response.getWriter();
+			writer.print(script);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 }
